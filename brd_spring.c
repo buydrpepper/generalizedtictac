@@ -214,7 +214,11 @@ void BRD_Update(GameWindow *window, SDL_Renderer *renderer, SDL_Event *event, in
             cur->hovered = 1;
         else cur->hovered = 0;
         if(cur->hovered && mouse_pressed) {
-            cur->onClick(window);
+            //this can be a VERY BAD memory bug if not careful. the only reason it
+            //doesn't break is that the buttons array is set to null when buttons are 
+            //deleted, and it doesn't unallocate any already allocated memory
+            //TODO: FIX THIS!!!
+            cur->onClick(window); 
             mouse_pressed = 0;
         };
         BRD_DrawButton(renderer, &window->buttons[i]);
