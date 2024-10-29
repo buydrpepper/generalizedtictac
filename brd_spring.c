@@ -235,6 +235,9 @@ void BRD_Update(GameWindow *window, SDL_Renderer *renderer, SDL_Event *event, in
             BRD_ChangedState(window);
         }
     }
+    //this is less bad b/c we assume a window has only one board, and it has to be null if there is no board
+    //still this is bad
+    //TODO: fix this
     BRD_DrawBoard(window->board, renderer);
     
 }
